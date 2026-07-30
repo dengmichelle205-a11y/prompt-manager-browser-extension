@@ -1,0 +1,15 @@
+{
+  "name": "prompt-manager-browser-extension",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A lightweight, privacy-friendly prompt manager Chrome extension built with Manifest V3.",
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "package": "node scripts/package.mjs",
+    "clean": "node scripts/clean.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prompt Manager 管理页</title>
+    <script src="mode.js"></script>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="background-shape shape-a"></div>
+    <div class="background-shape shape-b"></div>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="dot-grid" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+          </div>
+          <h1>Prompt Manager</h1>
+          <span class="pill">1.0.0</span>
+        </div>
+        <div class="actions">
+          <button id="addPromptBtn" class="btn btn-green">新增</button>
+          <button id="exportBtn" class="btn">导出</button>
+          <label class="btn import-btn">
+            导入
+            <input id="importInput" type="file" accept=".json" hidden />
+          </label>
+        </div>
+      </header>
+
+      <section class="toolbar">
+        <input id="searchInput" type="search" placeholder="搜索 prompt 或标签" />
+        <div id="filterChips" class="chips"></div>
+      </section>
+
+      <section id="promptList" class="prompt-list"></section>
+    </main>
+
+    <dialog id="promptDialog" class="dialog">
+      <form id="promptForm" method="dialog">
+        <h2 id="dialogTitle">新增提示词</h2>
+        <input id="titleInput" type="text" placeholder="标题（可留空）" />
+        <textarea id="contentInput" rows="8" placeholder="内容" required></textarea>
+        <div class="tag-picker-wrap">
+          <label class="tag-label">标签</label>
+          <div id="tagPicker" class="tag-picker">
+            <div id="selectedTags" class="selected-tags"></div>
+            <input
+              id="tagInput"
+              type="text"
+              placeholder="输入标签后回车创建，或从下方选择已有标签"
+              autocomplete="off"
+            />
+            <div id="tagSuggestions" class="tag-suggestions hidden"></div>
+          </div>
+        </div>
+        <label class="checkbox">
+          <input id="favoriteInput" type="checkbox" />
+          收藏
+        </label>
+        <div class="dialog-actions">
+          <button type="button" id="cancelBtn" class="btn">取消</button>
+          <button type="submit" class="btn btn-green">保存</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="tagColorDialog" class="dialog color-dialog">
+      <form id="tagColorForm" method="dialog">
+        <h2>修改标签颜色</h2>
+        <p class="color-dialog-text">
+          当前标签：<strong id="tagColorName"></strong>
+        </p>
+        <label class="color-field">
+          <span>选择颜色</span>
+          <input id="tagColorInput" type="color" value="#e2e9e5" />
+        </label>
+        <div class="preset-color-wrap">
+          <span>预设颜色</span>
+          <div id="tagColorPresets" class="preset-color-grid"></div>
+        </div>
+        <div class="color-preview-wrap">
+          <span>预览</span>
+          <span id="tagColorPreview" class="chip color-preview-chip"></span>
+          <code id="tagColorValue" class="color-value">#E2E9E5</code>
+        </div>
+        <div class="dialog-actions">
+          <button type="button" id="resetTagColorBtn" class="btn">恢复默认</button>
+          <button type="button" id="cancelTagColorBtn" class="btn">取消</button>
+          <button type="submit" class="btn btn-green">保存</button>
+        </div>
+      </form>
+    </dialog>
+
+    <template id="cardTemplate">
+      <article class="prompt-card">
+        <div class="card-header">
+          <h3 class="card-title"></h3>
+          <div class="card-menu">
+            <button class="btn icon-btn copy-btn" title="复制">复制</button>
+            <button class="btn icon-btn edit-btn" title="编辑">编辑</button>
+            <button class="btn icon-btn fav-btn" title="收藏">收藏</button>
+            <button class="btn icon-btn danger delete-btn" title="删除">删除</button>
+          </div>
+        </div>
+        <p class="card-content"></p>
+        <div class="card-footer">
+          <div class="tag-list"></div>
+          <small class="meta"></small>
+        </div>
+      </article>
+    </template>
+
+    <script src="options.js"></script>
+  </body>
+</html>

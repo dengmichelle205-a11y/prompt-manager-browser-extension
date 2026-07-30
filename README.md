@@ -16,21 +16,21 @@
 
 扩展仅申请 `storage` 权限，不申请任何网站访问权限，也不包含远程脚本、统计、广告或遥测。提示词正文保存在 `chrome.storage.local`；标签颜色保存在 `chrome.storage.sync`，可能随同一 Chrome 账号同步。项目不配置服务器，也不会主动把提示词发送给开发者或第三方。详见 [PRIVACY.md](PRIVACY.md)。
 
-> 源码与发布 ZIP 不包含开发者个人提示词。新安装后的提示词列表为空。卸载扩展可能删除浏览器本地数据，请先导出重要内容。
+> 源码 ZIP 不包含开发者个人提示词。新安装后的提示词列表为空。卸载扩展可能删除浏览器本地数据，请先导出重要内容。
 
-## 从 GitHub Release 安装
+## 下载与安装
 
-1. 在 Releases 页面下载 `prompt-manager-v1.0.0.zip`。
-2. 解压 ZIP。
+当前可直接下载公开仓库源码 ZIP：
+
+**[下载 Prompt Manager](https://github.com/dengmichelle205-a11y/prompt-manager-browser-extension/archive/refs/heads/main.zip)**
+
+1. 下载并解压 ZIP。
+2. 打开解压后的 `prompt-manager-browser-extension-main` 文件夹，确认其中直接存在 `manifest.json`。
 3. 在 Chrome 地址栏打开 `chrome://extensions/`。
 4. 开启右上角“开发者模式”。
-5. 点击“加载已解压的扩展程序”，选择解压后的文件夹。
+5. 点击“加载已解压的扩展程序”，选择上述文件夹。
 
 GitHub Pages 是项目介绍和下载页面，不是 Chrome 一键安装页面。面向普通用户的一键安装需要后续发布到 Chrome Web Store。
-
-## 从源码安装
-
-克隆或下载仓库，确认目录根部存在 `manifest.json`，然后按照上述开发者模式步骤加载该目录。
 
 ## 数据格式
 
@@ -56,6 +56,7 @@ GitHub Pages 是项目介绍和下载页面，不是 Chrome 一键安装页面�
 要求 Node.js 20 或更高版本。
 
 ```bash
+npm ci
 npm run check
 npm run package
 ```
@@ -65,7 +66,8 @@ npm run package
 ## 目录结构
 
 - `manifest.json`：扩展清单
-- `options.html` / `options.css` / `options.js`：主界面与功能
+- `options.html` / `options.css`：主界面
+- `options-core.js` / `options-render.js` / `options-tags.js` / `options-events.js`：功能代码
 - `mode.js`：弹窗/页面模式识别
 - `icons/`：扩展图标
 - `scripts/`：检查、清理和打包脚本
@@ -77,7 +79,7 @@ npm run package
 1. 更新 `manifest.json` 和 `package.json` 版本。
 2. 更新 `CHANGELOG.md`。
 3. 运行 `npm run check && npm run package`。
-4. 推送 `vX.Y.Z` 标签，Release 工作流会创建发布并上传 ZIP。
+4. Release 工作流负责生成版本 ZIP；也可在 GitHub Actions 中手动运行。
 
 ## 已知限制
 

@@ -71,9 +71,7 @@
     <dialog id="tagColorDialog" class="dialog color-dialog">
       <form id="tagColorForm" method="dialog">
         <h2>修改标签颜色</h2>
-        <p class="color-dialog-text">
-          当前标签：<strong id="tagColorName"></strong>
-        </p>
+        <p class="color-dialog-text">当前标签：<strong id="tagColorName"></strong></p>
         <label class="color-field">
           <span>选择颜色</span>
           <input id="tagColorInput" type="color" value="#e2e9e5" />
@@ -114,6 +112,9 @@
       </article>
     </template>
 
-    <script src="options.js"></script>
+    <script src="options-core.js"></script>
+    <script src="options-render.js"></script>
+    <script src="options-tags.js"></script>
+    <script src="options-events.js"></script>
   </body>
 </html>
